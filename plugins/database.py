@@ -1,4 +1,4 @@
- 
+
 
 import logging
 from struct import pack
@@ -10,23 +10,22 @@ from umongo import Instance, Document, fields
 from motor.motor_asyncio import AsyncIOMotorClient
 from config import DB_URI, DB_NAME
 
- 
+
 
 logger = logging.getLogger(__name__)
 logger.setLevel(logging.INFO)
 
- 
 
 COLLECTION_NAME = "Telegram_Files"
 
- 
+
 
 
 client = AsyncIOMotorClient(DB_URI)
 db = client[DB_NAME]
 instance = Instance.from_db(db)
 
- 
+
 
 @instance.register
 class Media(Document):
@@ -42,7 +41,7 @@ class Media(Document):
         indexes = ('$file_name', )
         collection_name = COLLECTION_NAME
 
- 
+
 
 
 async def get_file_details(query):
@@ -51,7 +50,7 @@ async def get_file_details(query):
     filedetails = await cursor.to_list(length=1)
     return filedetails
 
- 
+
 
 
 def encode_file_id(s: bytes) -> str:
@@ -70,13 +69,12 @@ def encode_file_id(s: bytes) -> str:
 
     return base64.urlsafe_b64encode(r).decode().rstrip("=")
 
- 
 
 
 def encode_file_ref(file_ref: bytes) -> str:
     return base64.urlsafe_b64encode(file_ref).decode().rstrip("=")
 
- 
+
 
 def unpack_new_file_id(new_file_id):
     """Return file_id, file_ref"""
@@ -94,4 +92,4 @@ def unpack_new_file_id(new_file_id):
     return file_id, file_ref
 
 
- 
+

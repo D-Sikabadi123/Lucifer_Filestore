@@ -1,4 +1,4 @@
- 
+
 
 import re
 import logging
@@ -85,7 +85,7 @@ async def delete_cloned_bot(client, message):
         logging.exception("Error while deleting cloned bot.")
         await message.reply_text("An error occurred while deleting the cloned bot.")
 
- 
+
 
 async def restart_bots():
     logging.info("Restarting all bots........")

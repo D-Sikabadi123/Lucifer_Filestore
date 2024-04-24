@@ -1,4 +1,4 @@
- 
+
 
 import re
 from pyrogram import filters, Client, enums
@@ -6,7 +6,7 @@ from plugins.database import unpack_new_file_id
 from clone_plugins.users_api import get_user, get_short_link
 import base64
 
- 
+
 
 @Client.on_message(filters.command(['link', 'plink']))
 async def gen_link_s(client: Client, message):
@@ -19,7 +19,7 @@ async def gen_link_s(client: Client, message):
     if message.has_protected_content:
         return await message.reply("okDa")
 
- 
+
     
     file_id, ref = unpack_new_file_id((getattr(replied, file_type.value)).file_id)
     string = 'filep_' if message.text.lower().strip() == "/plink" else 'file_'
@@ -35,5 +35,5 @@ async def gen_link_s(client: Client, message):
     await message.reply(f"<b>⭕ ʜᴇʀᴇ ɪs ʏᴏᴜʀ ʟɪɴᴋ:\n\n🖇️ sʜᴏʀᴛ ʟɪɴᴋ :- {short_link}</b>")
 
 
- 
+
     
